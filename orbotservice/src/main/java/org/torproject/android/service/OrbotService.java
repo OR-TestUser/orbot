@@ -679,7 +679,10 @@ public class OrbotService extends VpnService implements TorServiceConstants, Orb
 
         if (packageName != null) {
             reply.setPackage(packageName);
-            sendBroadcast(reply);
+            /* ********OpenRefactory Warning********
+			 Broadcasting message should specify receiver permission.
+			*/
+			sendBroadcast(reply);
         }
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(reply);
