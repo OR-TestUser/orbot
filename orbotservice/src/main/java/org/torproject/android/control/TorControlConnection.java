@@ -139,8 +139,12 @@ public class TorControlConnection implements TorControlCommands {
                 throw new TorControlSyntaxError("Connection to Tor " +
                      " broke down while receiving reply!");
             }
-            if (debugOutput != null)
-                debugOutput.println("<< "+line);
+            if (debugOutput != null) {
+				/* ********OpenRefactory Warning********
+				 Possible XSS attack!
+				*/
+				debugOutput.println("<< "+line);
+			}
             if (line.length() < 4)
                 throw new TorControlSyntaxError("Line (\""+line+"\") too short");
             String status = line.substring(0,3);
